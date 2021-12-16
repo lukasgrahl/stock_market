@@ -294,7 +294,13 @@ def apply_datetime_format(x):
         pass
 
     try:
-        x = datetime.datetime.strptime(x, "%m.%d.%Y %H:%M:%S")
+        x = datetime.datetime.strptime(x, "%d/%m/%Y")
+        return x
+    except ValueError:
+        pass
+
+    try:
+        x = datetime.datetime.strptime(x, "%d.%m.%Y %H:%M:%S")
         return x
     except ValueError:
         pass
@@ -306,4 +312,9 @@ def apply_datetime_format(x):
         pass
 
     pprint("Datetime Assignment failed")
-    raise ValueError(501)
+    raise ValueError(x, "Format not in the collection")
+
+
+def translate_ticker_col_names(df_in: pd.DataFrame, ticker: dict, axis: int =1, **kwargs):
+    df = df_in.copy()
+    return df.rename({ticker[item] : item for item in ticker.keys()}, axis=axis, **kwargs)

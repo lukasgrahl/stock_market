@@ -39,7 +39,7 @@ ticker_trade = {
 }
 
 # url parts
-dict_url_base = {'url_base': 'https://www.alphavantage.co/query',
+dict_url_base = {'url_base': 'https://www.alphavantage.co/query?',
                  'function': 'TIME_SERIES_DAILY',
                  'interval': '60min',
                  'slices': 'year1month3',
@@ -96,7 +96,7 @@ weights = {
     'RBOD.L': 0.1101,
     'DGIT.L': 0.023,
     'IPRV.L': 0.0897,
-    'LOIL.L': 1
+    'LOIL.L': 1.0
 }
 
 dic_time = {
