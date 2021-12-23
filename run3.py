@@ -1,4 +1,5 @@
 import pandas as pd
+
 import streamlit as st
 
 from src.classes import DataPull, PerformanceEval, PlotlyPlots, get_risk_capital_weight, AllocationEval, Portfolio
@@ -72,21 +73,21 @@ if __name__ == "__main__":
     c11.write("Overall performance")
 
     # charts
-    if port_chart is "all":
+    if port_chart == "all":
         b1.plotly_chart(PlotlyPlots(data=data_all_time,
                                     title="Overall Portfolio").line_plot())
         # c3.write(round((data_all_time.sum(axis=1).iloc[-1] - 1), 2))
-    if port_chart is "etfc":
+    if port_chart == "etfc":
         b1.plotly_chart(PlotlyPlots(data=etfc_perf.interval_index_perf,
                                     title="ETFC Portfolio").line_plot())
         # c3.write(round(etfc_perf.value_perf.sum(axis=1).iloc[-1] / etfc_perf.total_inflows - 1), 2)
         # c13.write(round(etfc_perf.value_perf.sum(axis=1).iloc[-1] - etfc_perf.total_inflows), 2)
-    if port_chart is "etfr":
+    if port_chart == "etfr":
         b1.plotly_chart(PlotlyPlots(data=etfr_perf.interval_index_perf,
                                     title="ETFR Portfolio").line_plot())
         # c3.write(round(etfr_perf.value_perf.sum(axis=1).iloc[-1] / etfr_perf.total_inflows - 1), 2)
         # c13.write(round(etfr_perf.value_perf.sum(axis=1).iloc[-1] - etfr_perf.total_inflows), 2)
-    if port_chart is "trade":
+    if port_chart == "trade":
         b1.plotly_chart(PlotlyPlots(data=trade_perf.interval_index_perf,
                                     title="TRADE Portfolio").line_plot())
         # c3.write(round(trade_perf.value_perf.sum(axis=1).iloc[-1] / trade_perf.total_inflows - 1), 2)
