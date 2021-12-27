@@ -559,79 +559,79 @@ class Eval:
         pass
 
 
-class PlotlyPlots:
-
-    def __init__(self,
-                 data,
-                 title: str,
-                 width: int = 1700,
-                 height: int = 800,
-                 update: Optional[dict] = None,
-                 **kwargs):
-        """
-
-        :param data:
-        :param title:
-        :param width:
-        :param height:
-        :param kwargs: x : col for x,
-                       y : col for y,
-                       color : col for colour hue
-                       size : col for size hue
-        """
-
-        self.data = data
-        self.title = title
-        self.width = width
-        self.height = height
-        self.update = update
-
-        self.fig = None
-
-        self.__dict__.update(**kwargs)
-        self.kwargs = kwargs
-
-    def _fig_updated(self):
-
-        if self.update is not None:
-            try:
-                self.fig.update_traces(**self.kwargs)
-            except Exception as e:
-                try:
-                    self.fig.update_yaxes(**self.kwargs)
-                except Exception as e:
-                    pass
-        pass
-
-    def line_plot(self):
-        self.fig = plx.line(data_frame=self.data,
-                            title=self.title,
-                            width=self.width,
-                            height=self.height,
-                            **self.kwargs)
-        self._fig_updated()
-
-        return self.fig
-
-    def scatter_plot(self):
-        self.fig = plx.scatter(data_frame=self.data,
-                               width=self.width,
-                               height=self.height,
-                               title=self.title,
-                               **self.kwargs)
-        self._fig_updated()
-
-        return self.fig
-
-    def bar_plot(self):
-        self.fig = plx.bar(data_frame=self.data,
-                           width=self.width,
-                           height=self.height,
-                           title=self.title,
-                           **self.kwargs)
-        self._fig_updated()
-
-        return self.fig
+# class PlotlyPlots:
+#
+#     def __init__(self,
+#                  data,
+#                  title: str,
+#                  width: int = 1700,
+#                  height: int = 800,
+#                  update: Optional[dict] = None,
+#                  **kwargs):
+#         """
+#
+#         :param data:
+#         :param title:
+#         :param width:
+#         :param height:
+#         :param kwargs: x : col for x,
+#                        y : col for y,
+#                        color : col for colour hue
+#                        size : col for size hue
+#         """
+#
+#         self.data = data
+#         self.title = title
+#         self.width = width
+#         self.height = height
+#         self.update = update
+#
+#         self.fig = None
+#
+#         self.__dict__.update(**kwargs)
+#         self.kwargs = kwargs
+#
+#     def _fig_updated(self):
+#
+#         if self.update is not None:
+#             try:
+#                 self.fig.update_traces(**self.kwargs)
+#             except Exception as e:
+#                 try:
+#                     self.fig.update_yaxes(**self.kwargs)
+#                 except Exception as e:
+#                     pass
+#         pass
+#
+#     def line_plot(self):
+#         self.fig = plx.line(data_frame=self.data,
+#                             title=self.title,
+#                             width=self.width,
+#                             height=self.height,
+#                             **self.kwargs)
+#         self._fig_updated()
+#
+#         return self.fig
+#
+#     def scatter_plot(self):
+#         self.fig = plx.scatter(data_frame=self.data,
+#                                width=self.width,
+#                                height=self.height,
+#                                title=self.title,
+#                                **self.kwargs)
+#         self._fig_updated()
+#
+#         return self.fig
+#
+#     def bar_plot(self):
+#         self.fig = plx.bar(data_frame=self.data,
+#                            width=self.width,
+#                            height=self.height,
+#                            title=self.title,
+#                            **self.kwargs)
+#         self._fig_updated()
+#
+#         return self.fig
 
 
 # Functions
