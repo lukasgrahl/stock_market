@@ -1087,3 +1087,17 @@ DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage
 DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=DGIT.L&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
 DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=IPRV.L&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
+DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=VNRT.L&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
+DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=VFEM.L&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
+DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=VEUR.AS&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
+DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=WLDS.L&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
+DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=VDJP.L&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
+DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=VAPX.L&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
+DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=VAPX.L&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None

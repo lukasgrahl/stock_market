@@ -9,8 +9,8 @@ import pandas as pd
 import plotly.express as plx
 import requests
 
-from utils.utils import apply_datetime_format, translate_ticker_col_names
-from settings import dict_url_base, DATA_DIR, dic_time, ticker_etfc, ticker_trade, inflows_trade, weights
+from utils.utils import apply_datetime_format
+from settings import dict_url_base, DATA_DIR, dic_time
 
 
 class Portfolio(object):
@@ -21,7 +21,8 @@ class Portfolio(object):
                  weights: dict,
                  inflows: list,
                  data: Optional[pd.DataFrame] = None,
-                 data_default_index: str = "Date"):
+                 data_default_index: str = "Date",
+                 max_creation_time_delta_d: int = 2):
 
         self.ticker = ticker
         self.filename = filename
@@ -31,6 +32,7 @@ class Portfolio(object):
         self.data_default_index = data_default_index
         self.data = data
         self.total_inflows = None
+        self.max_creation_time_delta_d = max_creation_time_delta_d
 
         self._get_inflow_weight()
         self._load_data()
@@ -45,7 +47,7 @@ class Portfolio(object):
                 self._file_creation_tdelta = (datetime.datetime.now().date() - data_creation_time).days
 
             except FileNotFoundError:
-                self._file_creation_tdelta = 1
+                self._file_creation_tdelta = self.max_creation_time_delta_d + 1
             break
 
         pass
@@ -120,17 +122,16 @@ class Portfolio(object):
 
     def _load_data(self):
         self._check_data_creation_date()
-        if self._file_creation_tdelta > 0:
+        if self._file_creation_tdelta > self.max_creation_time_delta_d:
             _ = DataPull(filename=self.filename, ticker=self.ticker)
             self.data = _.data
-        elif self._file_creation_tdelta == 0:
+        elif self._file_creation_tdelta <= self.max_creation_time_delta_d:
             self.data = pd.read_csv(os.path.join(DATA_DIR, f"{self.filename}.csv"))
 
         self._check_data_index()
         self._check_data_order()
         self._interpolate()
         self._output_sanity_check()
-
         pass
 
 
@@ -559,82 +560,82 @@ class Eval:
         pass
 
 
-# class PlotlyPlots:
-#
-#     def __init__(self,
-#                  data,
-#                  title: str,
-#                  width: int = 1700,
-#                  height: int = 800,
-#                  update: Optional[dict] = None,
-#                  **kwargs):
-#         """
-#
-#         :param data:
-#         :param title:
-#         :param width:
-#         :param height:
-#         :param kwargs: x : col for x,
-#                        y : col for y,
-#                        color : col for colour hue
-#                        size : col for size hue
-#         """
-#
-#         self.data = data
-#         self.title = title
-#         self.width = width
-#         self.height = height
-#         self.update = update
-#
-#         self.fig = None
-#
-#         self.__dict__.update(**kwargs)
-#         self.kwargs = kwargs
-#
-#     def _fig_updated(self):
-#
-#         if self.update is not None:
-#             try:
-#                 self.fig.update_traces(**self.kwargs)
-#             except Exception as e:
-#                 try:
-#                     self.fig.update_yaxes(**self.kwargs)
-#                 except Exception as e:
-#                     pass
-#         pass
-#
-#     def line_plot(self):
-#         self.fig = plx.line(data_frame=self.data,
-#                             title=self.title,
-#                             width=self.width,
-#                             height=self.height,
-#                             **self.kwargs)
-#         self._fig_updated()
-#
-#         return self.fig
-#
-#     def scatter_plot(self):
-#         self.fig = plx.scatter(data_frame=self.data,
-#                                width=self.width,
-#                                height=self.height,
-#                                title=self.title,
-#                                **self.kwargs)
-#         self._fig_updated()
-#
-#         return self.fig
-#
-#     def bar_plot(self):
-#         self.fig = plx.bar(data_frame=self.data,
-#                            width=self.width,
-#                            height=self.height,
-#                            title=self.title,
-#                            **self.kwargs)
-#         self._fig_updated()
-#
-#         return self.fig
+class PlotlyPlots:
+
+    def __init__(self,
+                 data,
+                 title: str,
+                 width: int = 1700,
+                 height: int = 800,
+                 update: Optional[dict] = None,
+                 **kwargs):
+        """
+
+        :param data:
+        :param title:
+        :param width:
+        :param height:
+        :param kwargs: x : col for x,
+                       y : col for y,
+                       color : col for colour hue
+                       size : col for size hue
+        """
+
+        self.data = data
+        self.title = title
+        self.width = width
+        self.height = height
+        self.update = update
+
+        self.fig = None
+
+        self.__dict__.update(**kwargs)
+        self.kwargs = kwargs
+
+    def _fig_updated(self):
+
+        if self.update is not None:
+            try:
+                self.fig.update_traces(**self.kwargs)
+            except Exception as e:
+                try:
+                    self.fig.update_yaxes(**self.kwargs)
+                except Exception as e:
+                    pass
+        pass
+
+    def line_plot(self):
+        self.fig = plx.line(data_frame=self.data,
+                            title=self.title,
+                            width=self.width,
+                            height=self.height,
+                            **self.kwargs)
+        self._fig_updated()
+
+        return self.fig
+
+    def scatter_plot(self):
+        self.fig = plx.scatter(data_frame=self.data,
+                               width=self.width,
+                               height=self.height,
+                               title=self.title,
+                               **self.kwargs)
+        self._fig_updated()
+
+        return self.fig
+
+    def bar_plot(self):
+        self.fig = plx.bar(data_frame=self.data,
+                           width=self.width,
+                           height=self.height,
+                           title=self.title,
+                           **self.kwargs)
+        self._fig_updated()
+
+        return self.fig
 
 
-# Functions
+## Functions
 def get_risk_capital_weight(dataetfc, datatrade, inflow_etfc, inflow_trade, weights):
     risk_capital = [item[1] for item in inflow_etfc]
     risk_capital.extend([item[1] for item in inflow_trade])
@@ -657,4 +658,10 @@ def get_risk_capital_weight(dataetfc, datatrade, inflow_etfc, inflow_trade, weig
 
 
 if __name__ == "__main__":
+    from settings import ticker_etfr, ticker_etfc, ticker_trade, weights, inflows_trade, inflows_etfc, inflows_etfr
+
+    etfr = Portfolio(ticker=ticker_etfr, filename="data_etfr", weights=weights, inflows=inflows_etfr)
+    etfc = Portfolio(ticker=ticker_etfc, filename="data_etfc", weights=weights, inflows=inflows_etfc)
+    trade = Portfolio(ticker=ticker_trade, filename="data_trade", weights=weights, inflows=inflows_trade)
+    print(etfr.data)
     pass

@@ -2,7 +2,7 @@ import pandas as pd
 
 import streamlit as st
 
-from src.classes import DataPull, PerformanceEval, PlotlyPlots, get_risk_capital_weight, AllocationEval, Portfolio
+from src.classes import PerformanceEval, PlotlyPlots, get_risk_capital_weight, AllocationEval, Portfolio
 from settings import inflows_etfr, inflows_trade, inflows_etfc
 from settings import ticker_etfr, ticker_etfc, ticker_trade
 from settings import weights, dic_time, dict_return_period, dict_interval
