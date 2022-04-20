@@ -22961,3 +22961,16 @@ DEBUG:matplotlib.font_manager:findfont: score(<Font 'Lucida Console' (lucon.ttf)
 DEBUG:matplotlib.font_manager:findfont: score(<Font 'Brush Script MT' (BRUSHSCI.TTF) italic normal 400 normal>) = 11.05
 DEBUG:matplotlib.font_manager:findfont: score(<Font 'Dubai' (DUBAI-LIGHT.TTF) normal normal 300 normal>) = 10.145
 DEBUG:matplotlib.font_manager:findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0 to DejaVu Sans ('C:\\Users\\Lukas Grahl\\anaconda3\\lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.
+DEBUG:parso.cache:pickle loaded: C:\Users\Lukas Grahl\Documents\GIT\stock_market\notebooks\..\src\__init__.py
+DEBUG:parso.cache:pickle loaded: C:\Users\Lukas Grahl\anaconda3\lib\site-packages\jedi\third_party\typeshed\stdlib\2and3\builtins.pyi
+DEBUG:parso.cache:pickle loaded: C:\Users\Lukas Grahl\Documents\GIT\stock_market\notebooks\..\settings.py
+DEBUG:parso.cache:pickle loaded: C:\Users\Lukas Grahl\anaconda3\lib\site-packages\jedi\third_party\typeshed\stdlib\3\sys.pyi
+DEBUG:parso.cache:pickle loaded: C:\Users\Lukas Grahl\anaconda3\lib\typing.py
+DEBUG:parso.cache:pickle loaded: C:\Users\Lukas Grahl\anaconda3\lib\site-packages\jedi\third_party\typeshed\stdlib\3\typing.pyi
+DEBUG:parso.python.diff:diff parser start
+DEBUG:parso.python.diff:line_lengths old: 2; new: 1
+DEBUG:parso.python.diff:-> code[replace] old[1:2] new[1:1]
+DEBUG:parso.python.diff:parse_part from 1 to 1 (to 0 in part parser)
+DEBUG:parso.python.diff:diff parser end
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.alphavantage.co:443
+DEBUG:urllib3.connectionpool:https://www.alphavantage.co:443 "GET /query?&function=TIME_SERIES_DAILY&symbol=VIX&outputsize=full&datatype=json&apikey=GD5O2HJGYVV89VGE HTTP/1.1" 200 None

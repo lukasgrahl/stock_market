@@ -130,6 +130,7 @@ dmypy.json
 
 # folder
 /data
+/notebooks/.ipynb_checkpoints
 
 #files
 .idea

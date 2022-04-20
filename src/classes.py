@@ -634,8 +634,7 @@ class PlotlyPlots:
 
         return self.fig
 
-
-## Functions
+# Functions
 def get_risk_capital_weight(dataetfc, datatrade, inflow_etfc, inflow_trade, weights):
     risk_capital = [item[1] for item in inflow_etfc]
     risk_capital.extend([item[1] for item in inflow_trade])
@@ -659,6 +658,8 @@ def get_risk_capital_weight(dataetfc, datatrade, inflow_etfc, inflow_trade, weig
 
 if __name__ == "__main__":
     from settings import ticker_etfr, ticker_etfc, ticker_trade, weights, inflows_trade, inflows_etfc, inflows_etfr
+
+    x = DataPull(filename="vix_data", ticker={"volatility_index": "VIX"})
 
     etfr = Portfolio(ticker=ticker_etfr, filename="data_etfr", weights=weights, inflows=inflows_etfr)
     etfc = Portfolio(ticker=ticker_etfc, filename="data_etfc", weights=weights, inflows=inflows_etfc)
